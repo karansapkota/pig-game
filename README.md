@@ -41,11 +41,3 @@ The Pig Game is a simple dice game designed for two players. The goal is to be t
 ## Contributions
 
 Contributions are welcome! Feel free to fork this project and submit pull requests.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more information.
-
-## Acknowledgments
-
-- Thanks to traditional dice games for the inspiration behind this game.
