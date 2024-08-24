@@ -30,6 +30,17 @@
       <button class="btn btn--new">🔄 New game</button>
       <button class="btn btn--roll">🎲 Roll dice</button>
       <button class="btn btn--hold">📥 Hold</button>
+
+      <!-- Winner Model Window -->
+      <div class="modal hidden">
+        <div class="modal-content">
+          <h2 class="winner-announcement">
+            Player <span id="winner-player"></span> wins!
+          </h2>
+          <button class="btn btn--close-modal">Close</button>
+        </div>
+      </div>
+      <div class="overlay hidden"></div>
     </main>
     <script src="script.js"></script>
   </body>

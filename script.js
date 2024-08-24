@@ -12,12 +12,18 @@ const btnHold = document.querySelector('.btn--hold');
 const btnRoll = document.querySelector('.btn--roll');
 const btnNew = document.querySelector('.btn--new');
 
-let scores, currentscore, activePlayer, playing;
+// Modal elements
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.btn--close-modal');
+const winnerPlayer = document.getElementById('winner-player');
+
+let scores, currentScore, activePlayer, playing;
 
 const init = function () {
   // Starting Conditions
   scores = [0, 0];
-  currentscore = 0;
+  currentScore = 0;
   activePlayer = 0;
   playing = true;
 
@@ -38,7 +44,7 @@ const switchPlayer = function () {
   // Switch the player
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   activePlayer = activePlayer === 0 ? 1 : 0;
-  currentscore = 0;
+  currentScore = 0;
   player0EL.classList.toggle('player--active');
   player1EL.classList.toggle('player--active');
 };
@@ -56,9 +62,9 @@ btnRoll.addEventListener('click', function () {
     // 3. Check for Roll of 1:
     if (dice !== 1) {
       // Add dice to current score
-      currentscore += dice;
+      currentScore += dice;
       document.getElementById(`current--${activePlayer}`).textContent =
-        currentscore;
+        currentScore;
     } else {
       // Switch player
       switchPlayer();
@@ -69,7 +75,7 @@ btnRoll.addEventListener('click', function () {
 btnHold.addEventListener('click', function () {
   if (playing) {
     // 1. Add current score to active player's score
-    scores[activePlayer] += currentscore;
+    scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
 
@@ -83,6 +89,11 @@ btnHold.addEventListener('click', function () {
         .querySelector(`.player--${activePlayer}`)
         .classList.remove('player--active');
       diceEL.classList.add('hidden');
+
+      // Show modal with the winner
+      winnerPlayer.textContent = activePlayer + 1;
+      modal.classList.remove('hidden');
+      overlay.classList.remove('hidden');
     } else {
       // 3. Switch to the next player
       switchPlayer();
@@ -92,3 +103,12 @@ btnHold.addEventListener('click', function () {
 
 // Resetting the game
 btnNew.addEventListener('click', init);
+
+// Close modal functionality
+const closeModal = function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+};
+
+btnCloseModal.addEventListener('click', closeModal);
+overlay.addEventListener('click', closeModal);
